@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>demo</title>
+	<style>
+		body {
+			background: #ddd;
+		}
+
+		.highlight{
+			position: relative;
+			z-index: 1 !important;
+
+		}
+		.size{
+			width: 200px;
+			height: 200px;
+			z-index: 1;
+
+		}
+
+#rect{top: 100px; left:100px; position: absolute; }
+#volvo{top: 0px; left:0px; position: absolute; background-color: red;z-index: -1;}
+#saab{top: 10px; left:10px; position: absolute; background-color: yellow;z-index: -1;}	
+#opel{top: 20px; left:20px; position: absolute; background-color: green;z-index: -1;}	
+#audi{top: 30px; left:30px; position: absolute; background-color:  magenta;z-index: -1;}
+	</style>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script></script>
+	<script>
+		$(document).ready(function(){
+
+
+$( "select" )
+  .change(function () {
+    var str = "";
+
+    $( "select option:selected" ).each(function() {
+
+      str += $( this ).val();
+
+		console.log(str,"select option:selected");
+
+    });
+
+    $( "#1" ).text( str );
+
+
+    		// TODO !!! if $str == ? -> (find div $str) -> change div css 
+
+    		console.log($( "#rect" ).find( '#'+str ));
+
+
+//console.log($( "select option:selected" ).val());
+// ASW
+//$( "#rect" ).find( '#'+str ).css( "color", "red" );
+$( "#rect" ).find( '#'+str ).toggleClass( "highlight" );
+
+// random color
+//var c = '#'+Math.floor(Math.random()*16777215).toString(16);
+//$( "#rect" ).find( '#'+str ).css( "background-color",c );
+
+
+if($( "#rect" ).find( '#'+str ).hasClass( "highlight" )){
+
+	//console.log("t");
+	//$( "#rect" ).find( '#'+str ).removeClass( "highlight" );
+}
+
+
+
+
+
+  })
+.change();
+
+    //$( "#2" ).text( str );
+
+
+
+
+		});
+
+
+	</script>
+
+</head>
+<body>
+
+
+<select>
+	<option value="volvo">Volvo</option>
+	<option value="saab">Saab</option>
+	<option value="opel">Opel</option>
+	<option value="audi">Audi</option>
+</select>
+
+<div id="rect">
+	<div id="volvo" class="size">1.</div>
+	<div id="saab" class="size">2.</div>
+	<div id="opel" class="size">3.</div>
+	<div id="audi" class="size">4.</div>
+</div>
+</body>
+</html>
